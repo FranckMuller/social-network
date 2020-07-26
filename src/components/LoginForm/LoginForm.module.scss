@@ -1,0 +1,190 @@
+.loginForm {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 0 20px;
+  background-color: #0A4981;
+
+  .formWrap {
+    max-width: 500px;
+    width: 100%;
+    background: url('../../assets/images/sigin-form-bg.jpg') no-repeat #0A4981;
+    box-shadow: 0px 0px 16px 0px lighten(#0A4981, 13%);
+    background-size: cover;
+    background-position: center;
+    padding: 70px 20px;
+    border-radius: .5rem;
+    overflow: hidden;
+    position: relative;
+
+    .title {
+      margin-bottom: 55px;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    form {
+      color: #fff;
+
+      .serverError {
+        color: #f74016;
+        position: absolute;
+        bottom: 10px;
+        text-decoration: underline;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        animation: showServerError .5s cubic-bezier(0.23, 1, 0.320, 1);
+      }
+
+      .formGroup {
+        &.error {
+          &.email {
+
+            .inputWrap {
+              &:before {
+                background-image: url('../../assets/images/email-error.svg');
+              }
+            }
+          }
+
+          &.password {
+
+            .inputWrap {
+              &:before {
+                background-image: url('../../assets/images/password-error.svg');
+              }
+            }
+          }
+        }
+
+        &.email {
+          .inputWrap {
+            &:before {
+              background-image: url('../../assets/images/email.svg');
+            }
+          }
+
+          .inputWrap {
+            &.error {
+              &:before {
+                background-image: url('../../assets/images/email-error.svg');
+              }
+            }
+          }
+        }
+
+        &.password {
+          .inputWrap {
+            &:before {
+              background-image: url('../../assets/images/password.svg');
+            }
+          }
+
+          .inputWrap {
+            &.error {
+              &:before {
+                background-image: url('../../assets/images/password-error.svg');
+              }
+            }
+          }
+        }
+
+        .inputWrap {
+          position: relative;
+
+          &:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 10px;
+            top: 50%;
+            margin-top: -10px;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: center;
+          }
+
+          .error {
+            position: absolute;
+            color: #ad3014;
+            display: block;
+            padding: 3px 10px;
+            background: #ffffff94;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+            right: 0;
+            top: -30px;
+            animation: showError .5s cubic-bezier(0.23, 1, 0.320, 1);
+          }
+        }
+
+        &+.formGroup {
+          margin-top: 2rem;
+        }
+      }
+
+      input {
+        border-bottom: 1px solid #fff;
+        color: #fff;
+        background-color: rgba(10, 73, 129, .3);
+        box-shadow: 0px 7px 8px -4px rgba(10, 73, 129, 1);
+        padding-left: 40px;
+
+        &::placeholder {
+          color: #b7b7b7;
+        }
+      }
+
+      input:-webkit-autofill {
+        -webkit-text-fill-color: #ffffff !important;
+        -webkit-text-fill-background-color: #ffffff !important;
+      }
+
+      .btnWrap {
+        display: flex;
+        justify-content: center;
+
+        button {
+          margin-top: 5rem;
+          background-color: #11539e;
+          transition: background-color .3s ease;
+          font-size: 1rem;
+          letter-spacing: .5px;
+          width: 50%;
+          border-radius: 1rem;
+          opacity: .8;
+
+          &:hover {
+            background-color: darken(#11539e, 5%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes showError {
+  from {
+    transform: translateX(200px)
+  }
+
+  to {
+    transform: translateX(0)
+  }
+}
+
+@keyframes showServerError {
+  from {
+    transform: translatey(200px)
+  }
+
+  to {
+    transform: translatey(0)
+  }
+}

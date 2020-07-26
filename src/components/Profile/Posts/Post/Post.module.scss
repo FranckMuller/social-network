@@ -1,0 +1,41 @@
+.post {
+  padding: 10px;
+  border: 1px solid #e7e8ec;
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+
+  &+.post {
+    margin-top: 10px;
+  }
+
+  .author {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 25px 25px;
+    grid-column-gap: 20px;
+    align-items: center;
+
+    .avatar {
+      border-radius: 50%;
+      overflow: hidden;
+      grid-row: 1 / 3;
+    }
+
+    .name {
+      color: #2a5885;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .created {
+      color: #939393;
+      font-size: 14px;
+    }
+  }
+
+  .postMessage {
+    padding: 10px;
+    font-size: 14px;
+  }
+}

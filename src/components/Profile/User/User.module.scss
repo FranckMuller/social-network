@@ -1,0 +1,92 @@
+.user {
+  display: grid;
+  grid-template-columns: 185px 1fr;
+  grid-column-gap: 30px;
+  background-image: url('../../../assets/thunderstorm-3625405_1920.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 30px;
+
+  img {
+    margin: 0 auto;
+  }
+
+  >div {
+    // padding: 10px;
+    // border: 1px solid #e7e8ec;
+    // border-radius: 3px;
+    background-color: rgba(255, 255, 255, .6);
+    // box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+  }
+
+  .userData {
+    padding: 15px;
+    font-weight: 300;
+    border-bottom: 1px solid #fff;
+
+    .userDataTop {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-content: start;
+      align-items: center;
+      border-bottom: 1px solid #e7e8ec;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+
+      >div {
+        &:nth-child(n + 3) {
+          grid-column: 1 / 3;
+        }
+      }
+
+      .name {
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+
+      .lastActivity {
+        color: #576979;
+        font-size: 12.5px;
+        font-weight: 300;
+      }
+
+      .status {
+        font-size: 13px;
+        position: relative;
+        min-height: 19px;
+        font-weight: 400;
+        display: inline-block;
+      }
+    }
+
+    .mainInfo {
+      >div {
+        font-size: 13px;
+        color: #576979;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        padding-bottom: 5px;
+
+        span {
+          font-weight: 400;
+        }
+
+        &.btn {
+          span {
+            padding-top: 15px;
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        span {
+          color: #2a5885;
+        }
+      }
+    }
+  }
+}

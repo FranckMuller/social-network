@@ -1,0 +1,39 @@
+.pagination {
+  display: flex;
+  height: 100%;
+  border-radius: 3px;
+  justify-content: flex-end;
+
+  >span {
+    cursor: pointer;
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #c5c5c5;
+    border-top: 1px solid #c5c5c5;
+    border-bottom: 1px solid #c5c5c5;
+    transition: 0.3s;
+    color: #4378ad;
+    background-color: #ffffff;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+
+    &:hover {
+      background-color: darken(#fff, 10%);
+    }
+
+    &:first-child {
+      border-radius: 3px 0 0 3px;
+    }
+
+    &:last-child {
+      border-right: 1px solid #c5c5c5;
+      border-radius: 0 3px 3px 0;
+    }
+  }
+
+  .activePage {
+    font-weight: 600;
+    background-color: darken(#fff, 10%);
+  }
+}

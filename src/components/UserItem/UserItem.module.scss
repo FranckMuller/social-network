@@ -1,0 +1,43 @@
+.userItem {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  padding-bottom: 20px;
+  font-weight: 300;
+
+
+  &+.userItem {
+    border-top: 1px solid #c5c5c5;
+    padding-top: 20px;
+  }
+
+  .userInfo {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: .9rem;
+
+    .name {
+      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    .status {
+      font-size: .8rem;
+    }
+
+    .location {
+      margin-top: 10px;
+    }
+
+    .btnWrap {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        min-width: 135px;
+      }
+    }
+  }
+}

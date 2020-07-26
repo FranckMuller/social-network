@@ -1,0 +1,14 @@
+.postForm {
+  margin-bottom: 15px;
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 20px;
+    height: 30px;
+
+    .formTextarea {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}

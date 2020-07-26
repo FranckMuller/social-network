@@ -1,0 +1,273 @@
+@import './fonts';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+input,
+textarea {
+  font-family: 'roboto-cn', sans-serif;
+  &::placeholder {
+    letter-spacing: 0.5px;
+    font-size: 13px;
+  }
+
+  &:focus {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+input,
+button,
+textarea {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  padding: 5px 20px;
+  height: 100%;
+  resize: none;
+}
+
+input {
+  padding: 0 20px;
+}
+
+:root {
+  font-size: 13px;
+}
+
+body {
+  font-family: 'roboto-cn', sans-serif;
+  background-color: #ececec;
+  color: rgba(9, 22, 42, 0.8);
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+main {
+  position: relative;
+  overflow-y: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+// BUTTONS
+
+button:disabled {
+  background-color: lighten(#5181b8, 10%);
+}
+
+.btn {
+  font-size: 14px;
+  border-radius: 3px;
+  padding: 0.6em 0.85em;
+}
+
+.btn-primary {
+  background-color: #0a4981;
+  color: #fff;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: lighten($color: #0a4981, $amount: 7%);
+  }
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: gray;
+}
+
+.btn-group {
+  display: flex;
+
+  > .btn + .btn {
+    margin-left: 0.5rem;
+  }
+}
+
+// FLEX
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+// FORM
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  & + .form-group {
+    margin-top: 1rem;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    // background-color: #fff;
+    background-clip: padding-box;
+    // border: 1px solid #ced4da;
+    // border-radius: .25rem;
+    // transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+}
+
+input {
+  animation-name: autofill !important;
+}
+
+input:-webkit-autofill {
+  transition: background-color 50000s ease-in-out 0s !important;
+}
+
+// ANT SELECTS
+
+.ant-select-item {
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.ant-select-dropdown {
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ant-select-item-option:hover {
+  background-color: lighten(#0a4981, 10%);
+  color: #fff;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: lighten(#0a4981, 10%);
+  color: #fff;
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: lighten(#0a4981, 10%);
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  border: 1px solid #c7c7c7;
+  transition: all 0.3s ease;
+  color: #495057;
+  font-weight: 400;
+}
+
+.ant-select-focused.ant-select-single:not(.ant-select-customize-input)
+  .ant-select-selector {
+  box-shadow: 0px 1px 5px 0px rgba(10, 73, 129, 0.5);
+  border-color: lighten(#0a4981, 10%);
+}
+
+.ant-select-single.ant-select-open .ant-select-selection-item {
+  opacity: 1;
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item {
+  font-size: 1rem;
+}
+
+.ant-select-arrow {
+  color: lighten(#0a4981, 10%);
+}
+
+// ANT PICKER
+.ant-picker {
+  color: #9c9c9c;
+  border-color: #c7c7c7;
+  width: 100%;
+  * {
+    cursor: pointer;
+  }
+}
+
+.ant-picker-input {
+  input {
+    color: #495057;
+    font-size: 1rem;
+  }
+  input::placeholder {
+    color: #757575;
+  }
+}
+
+.ant-picker-suffix {
+  color: lighten(#0a4981, 10%);
+}
+
+.ant-picker:hover {
+  border-color: lighten(#0a4981, 10%);
+}
+
+.ant-picker-focused {
+  box-shadow: 0px 1px 5px 0px rgba(10, 73, 129, 0.5);
+  border-color: lighten(#0a4981, 10%);
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+  border-color: lighten(#0a4981, 10%);
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background: lighten(#0a4981, 10%);
+}
+
+.ant-picker-dropdown {
+  font-size: 1rem;
+}
+
+.ant-picker-header-view button:hover {
+  color: lighten(#0a4981, 10%);
+}

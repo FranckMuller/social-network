@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AppHeader from './components/AppHeader/AppHeader';
+import Footer from './components/Footer/Footer';
+import LoginFormContainer from './components/LoginForm/LoginFormContainer';
+import RegistrationFormContainer from './components/RegistrationForm/RegistrationFormContainer';
+import Layout from './components/Layout/Layout';
+import 'moment/locale/ru';
 
-function App() {
+import 'antd/dist/antd.css';
+import styles from './App.module.scss';
+
+const App = () => {
+  useEffect(() => {
+    window.addEventListener('unhandledrejection', function (event) {
+      console.warn(
+        'Внимание: Необработанная ошибка Promise. Позор вам! Причина: ' +
+          event.reason
+      );
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={styles.app}>
+        <AppHeader />
+        <main>
+          <Switch>
+            <Route path="/login" exact component={LoginFormContainer} />
+            <Route
+              path="/registration"
+              exact
+              component={RegistrationFormContainer}
+            />
+            <Route path="/" component={Layout} />
+          </Switch>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

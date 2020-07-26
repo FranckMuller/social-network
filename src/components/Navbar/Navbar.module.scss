@@ -1,0 +1,54 @@
+.navbar {
+  padding: 20px 10px;
+  border-right: 1px solid #c5c5c5;
+  border-left: 1px solid #c5c5c5;
+  background-color: #0A4981;
+  box-shadow: 0px 0px 16px 0px rgba(10, 73, 129, .5);
+
+  .navbarTop {
+    display: flex;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #fff;
+    align-items: center;
+
+    .photo {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .userName {
+      color: #fff;
+    }
+
+    .editLink a {
+      text-decoration: none;
+      color: #a0a0a0;
+      font-size: 11px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  ul {
+    li+li {
+      margin-top: 5px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 3px 10px;
+      transition: .3s ease;
+      border: 1px solid transparent;
+
+      &:hover,
+      &.active {
+        background-color: lighten(#0A4981, 10%);
+      }
+    }
+  }
+}

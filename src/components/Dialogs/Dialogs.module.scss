@@ -1,0 +1,15 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  height: 100%;
+  border: 1px solid #e7e8ec;
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 20px 10px;
+
+  .wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 50px;
+  }
+}
