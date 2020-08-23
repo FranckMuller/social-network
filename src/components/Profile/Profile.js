@@ -1,12 +1,12 @@
 import React from 'react';
-import User from './User/User';
+import UserProfileContainer from './UserProfile/UserProfileContainer';
 import { PostsContainer } from './Posts/PostsContainer';
 
-const Profile = ({ userProfile }) => {
+const Profile = ({ userProfile, urlParamUserId, authedUserId }) => {
   return (
     <div className="profile">
-      <User profile={userProfile} />
-      <PostsContainer />
+      <UserProfileContainer authedUserId={authedUserId} urlParamUserId={urlParamUserId} profile={userProfile} />
+      {/* <PostsContainer /> */}
     </div>
   );
 };

@@ -13,7 +13,10 @@
     align-items: center;
 
     .photo {
-      height: 50px;
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      overflow: hidden;
       margin-right: 10px;
     }
 

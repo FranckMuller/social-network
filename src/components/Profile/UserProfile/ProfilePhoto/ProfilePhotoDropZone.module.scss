@@ -1,0 +1,68 @@
+.profilePhoto {
+  &:hover {
+    svg {
+      fill: lighten(#0a4981, 10%);
+      transform: scale(1.1)
+    }
+  }
+
+  .uploadInputWrapper {
+    height: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: #0a4981;
+    transition: .3s;
+  }
+
+  >.cropContainer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .editBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px 0 30px;
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+
+    .cropWrapper {
+      max-width: 600px;
+      height: auto;
+      background-color: #fff;
+      display: flex;
+      padding: 30px 0 30px 30px;
+      border-radius: 0.3rem;
+    }
+
+    .croppedImage {
+      max-width: 100px;
+      max-height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+}

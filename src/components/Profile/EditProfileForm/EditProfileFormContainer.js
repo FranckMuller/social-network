@@ -3,20 +3,12 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { selectEditProfileFormDefaultValues } from '../../../redux/profile/selectors';
 import { selectAuthedUserId } from '../../../redux/auth/selectors';
-import {
-  fetchUserProfile,
-  fetchUpdateUserProfile,
-} from '../../../redux/profile/actions';
+import { fetchUserProfile, fetchUserProfileUpdate } from '../../../redux/profile/actions';
 import Preloader from '../../Preloader/Preloader';
 import EditProfileForm from './EditProfileForm';
 import withMappedRouterProps from '../../hoc/WithMappedRouterProps';
 
-const EditProfileFormContainer = ({
-  fetchUserProfile,
-  fetchUpdateUserProfile,
-  userId,
-  ...props
-}) => {
+const EditProfileFormContainer = ({ fetchUserProfile, fetchUserProfileUpdate, userId, ...props }) => {
   const [isFetchingProfile, setIsFetchingProfile] = useState(true);
 
   useEffect(() => {
@@ -27,18 +19,10 @@ const EditProfileFormContainer = ({
   }, []);
 
   const submitForm = (userData) => {
-    fetchUpdateUserProfile(userData);
+    fetchUserProfileUpdate(userData);
   };
 
-  return (
-    <>
-      {isFetchingProfile ? (
-        <Preloader />
-      ) : (
-        <EditProfileForm {...props} onSubmit={submitForm} />
-      )}
-    </>
-  );
+  return <>{isFetchingProfile ? <Preloader /> : <EditProfileForm {...props} onSubmit={submitForm} />}</>;
 };
 
 const mapStateToProps = (state) => {
@@ -50,10 +34,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchUserProfile,
-  fetchUpdateUserProfile,
+  fetchUserProfileUpdate,
 };
 
-export default compose(
-  withMappedRouterProps(),
-  connect(mapStateToProps, mapDispatchToProps)
-)(EditProfileFormContainer);
+export default compose(withMappedRouterProps(), connect(mapStateToProps, mapDispatchToProps))(EditProfileFormContainer);

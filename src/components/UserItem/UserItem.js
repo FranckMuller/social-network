@@ -2,22 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../Button/Button';
 
+import defaultMiniature from '../../assets/images/user-miniature.svg';
 import styles from './UserItem.module.scss';
-import userIcon from './../../assets/images/user.svg';
 
-const UserItem = ({
-  user,
-  onFollowUser,
-  onUnFollowUser,
-  isFetchingFollowing,
-}) => {
+const UserItem = ({ user, onFollowUser, onUnFollowUser, isFetchingFollowing }) => {
   const stylesBtn = { fontWeight: 500, fontSize: '12.5px' };
 
   return (
     <div className={styles.userItem} key={user._id}>
       <div className={styles.avatar}>
         <NavLink to={`/profile/${user._id}`}>
-          <img src={user.photo ? user.photo : userIcon} alt={user.name} />
+          <img src={user.photos.small ? user.photos.small : defaultMiniature} alt={user.name} />
         </NavLink>
       </div>
 
@@ -25,9 +20,7 @@ const UserItem = ({
         <div className={styles.name}>
           {user.name} {user.surname}
         </div>
-        {user.status ? (
-          <div className={styles.status}>{user.status}</div>
-        ) : null}
+        {user.status ? <div className={styles.status}>{user.status}</div> : null}
         <div className={styles.location}>
           {user.location.country} {user.location.city}
         </div>

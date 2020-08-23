@@ -1,13 +1,23 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import {
-  FormControlInput,
-  FormControlDatePicker,
-} from '../../common/FormControls';
+import { FormControlInput, FormControlDatePicker } from '../../common/FormControls';
 import LocationSelectContainer from '../../common/LocationSelect/LocationSelectContainer';
 import classNames from 'classnames';
 
 import styles from './EditProfileForm.module.scss';
+
+const locations = [
+  {
+    name: 'belarus',
+    value: 'Беларусь',
+    cities: ['Гомель', 'Гродно', 'Полоцк', 'Могилев', 'Минск'],
+  },
+  {
+    name: 'russia',
+    value: 'Россия',
+    cities: ['Санкт-Питербург', 'Москва', 'Воронеж', 'Казань', 'Екатиренбург', 'Сочи'],
+  },
+];
 
 const EditProfileForm = ({ handleSubmit, defaultValues, ...props }) => {
   return (
@@ -27,7 +37,6 @@ const EditProfileForm = ({ handleSubmit, defaultValues, ...props }) => {
             placeholder="Введите ваше имя"
             name="name"
             type="text"
-            customValue="123"
           />
         </div>
 
@@ -72,6 +81,7 @@ const EditProfileForm = ({ handleSubmit, defaultValues, ...props }) => {
           <label>Страна / город</label>
 
           <Field
+            locations={locations}
             component={LocationSelectContainer}
             className={styles.locationSelect}
             name="location"

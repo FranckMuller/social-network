@@ -1,0 +1,3 @@
+export const SET_AUTH_DATA = 'SET_AUTH_DATA';
+export const CLEAR_AUTH_STATE = 'CLEAR_AUTH_STATE';
+export const UPDATE_AUTH_STATE = 'UPDATE_AUTH_STATE';

@@ -8,15 +8,9 @@ const RegistrationForm = ({ handleSubmit, ...props }) => {
   return (
     <div className={styles.registrationForm}>
       <div className={styles.formWrap}>
-        <h3 className={`${styles.title} text-center`}>
-          Заполните форму для регистрации
-        </h3>
+        <h3 className={`${styles.title} text-center`}>Заполните форму для регистрации</h3>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <div
-            className={`${styles.formGroup} ${styles.name} ${
-              props.error ? styles.error : ''
-            } form-group`}
-          >
+          <div className={`${styles.formGroup} ${styles.name}  form-group`}>
             <label>Имя</label>
             <Field
               component={FormControlInput}
@@ -26,11 +20,7 @@ const RegistrationForm = ({ handleSubmit, ...props }) => {
               placeholder="Введите ваше имя"
             />
           </div>
-          <div
-            className={`${styles.formGroup} ${styles.surname} ${
-              props.error ? styles.error : ''
-            } form-group`}
-          >
+          <div className={`${styles.formGroup} ${styles.surname} form-group`}>
             <label>Фамилия</label>
             <Field
               component={FormControlInput}
@@ -40,11 +30,7 @@ const RegistrationForm = ({ handleSubmit, ...props }) => {
               placeholder="Введите вашу фмилию"
             />
           </div>
-          <div
-            className={`${styles.formGroup} ${styles.email} ${
-              props.error ? styles.error : ''
-            } form-group`}
-          >
+          <div className={`${styles.formGroup} ${styles.email} form-group`}>
             <label>Email</label>
             <Field
               component={FormControlInput}
@@ -54,11 +40,7 @@ const RegistrationForm = ({ handleSubmit, ...props }) => {
               placeholder="Введите ваш email"
             />
           </div>
-          <div
-            className={`${styles.formGroup} ${styles.password} ${
-              props.error ? styles.error : ''
-            } form-group`}
-          >
+          <div className={`${styles.formGroup} ${styles.password} form-group`}>
             <label>Пароль</label>
             <Field
               component={FormControlInput}
@@ -83,9 +65,7 @@ const RegistrationForm = ({ handleSubmit, ...props }) => {
               placeholder="Загрузите ваше фото"
             />
           </div> */}
-          {props.error && (
-            <span className={styles.serverError}>{props.error}</span>
-          )}
+          {props.error && <span className={styles.serverError}>{props.error}</span>}
           <div className={styles.btnWrap}>
             <button type="submit" className="btn btn-primary">
               Зарегистрироваться

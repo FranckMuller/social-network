@@ -31,11 +31,14 @@
       .serverError {
         color: #f74016;
         position: absolute;
-        bottom: 10px;
+        bottom: 0;
         text-decoration: underline;
         left: 0;
         display: flex;
         justify-content: center;
+        padding: 5px 0;
+        background-color: rgba(0, 0, 0, .6);
+        font-size: 1.1rem;
         width: 100%;
         animation: showServerError .5s cubic-bezier(0.23, 1, 0.320, 1);
       }
