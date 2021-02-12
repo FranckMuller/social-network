@@ -31,7 +31,7 @@ const NavbarTop: React.FC<MapStateProps> = ({ fullname, photo }) => {
 const mapStateToProps = (state: RootState) => {
   return {
     fullname: selectAuthedUserFullName(state),
-    photo: state.auth.miniature,
+    photo: state.profile.userProfile.photos.small,
   };
 };
 

@@ -8,7 +8,6 @@ export type AuthState = {
   email: null | string;
   surname: null | string;
   accessToken: null | string;
-  miniature: null | string;
   isAuthed: boolean;
 };
 

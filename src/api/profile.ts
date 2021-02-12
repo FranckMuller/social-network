@@ -19,10 +19,13 @@ export const updateUserProfileApi = async (userData: UserProfileUpdates) => {
 };
 
 export const updatePhotoProfileApi = async (profilePhotos: any) => {
+  const profilePhotosData = new FormData();
+  profilePhotosData.append("large", profilePhotos.large)
+  profilePhotosData.append("small", profilePhotos.small)
   try {
     const response = await axios.put(
       '/profilePhotos',
-      { profilePhotos },
+      profilePhotosData,
       {
         headers: {
           Authorization: `Bearer ${getAuthToken()}`,
@@ -32,3 +35,4 @@ export const updatePhotoProfileApi = async (profilePhotos: any) => {
     return response.data;
   } catch (error) {}
 };
+

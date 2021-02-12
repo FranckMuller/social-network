@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8082",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@testing-library/jest-dom": "^4.2.4",

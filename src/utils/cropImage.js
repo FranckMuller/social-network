@@ -1,10 +1,10 @@
-export const getCroppedImg = (image, crop, fileName) => {
-  const canvas = document.createElement('canvas');
+export const getCroppedImg = (image, crop) => {
+  const canvas = document.createElement("canvas");
   const scaleX = image.naturalWidth / image.width;
   const scaleY = image.naturalHeight / image.height;
   canvas.width = crop.width;
   canvas.height = crop.height;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
 
   ctx.drawImage(
     image,
@@ -18,24 +18,6 @@ export const getCroppedImg = (image, crop, fileName) => {
     crop.height
   );
 
-  return new Promise((resolve, reject, fileUrl) => {
-    canvas.toBlob((blob) => {
-      if (!blob) {
-        //reject(new Error('Canvas is empty'));
-        console.error('Canvas is empty');
-        return;
-      }
-
-      let reader = new FileReader();
-      reader.readAsDataURL(blob); // конвертирует Blob в base64 и вызывает onload
-      reader.onload = function () {
-        resolve(reader.result);
-      };
-
-      // blob.name = fileName;
-      // window.URL.revokeObjectURL(fileUrl);
-      // fileUrl = window.URL.createObjectURL(blob);
-      // resolve(fileUrl);
-    }, 'image/jpeg');
-  });
+  const croppedImage = canvas.toDataURL("image/jpeg");
+  return croppedImage;
 };

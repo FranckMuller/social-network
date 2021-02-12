@@ -8,7 +8,6 @@ export const initialState: AuthState = {
   email: null,
   surname: null,
   accessToken: null,
-  miniature: '',
   isAuthed: false,
 };
 

@@ -61,8 +61,7 @@ export const fetchUserProfileUpdate = (userData: UserProfileUpdates): ProfileThu
 export const fetchUpdateProfilePhoto = (profilePhotos: any) => {
   return async (dispatch: any) => {
     const photos = await updatePhotoProfileApi(profilePhotos);
-    updateLocalStorageAuthState({ miniature: photos.small });
-    dispatch(updateAuthState({ miniature: photos.small }));
+    console.log(photos)
     dispatch(updateUserProfile({ photos: photos }));
   };
 };

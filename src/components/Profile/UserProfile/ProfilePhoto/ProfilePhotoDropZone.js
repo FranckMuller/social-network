@@ -26,7 +26,6 @@ const ProfilePhotoDropZone = (props) => {
   const [imageRef, setImageRef] = useState(null);
 
   const onDrop = useCallback((accepted, rejectedFiles) => {
-    console.log(accepted);
     if (rejectedFiles && rejectedFiles.length > 0) {
       console.log('reject from upload file');
       return;
@@ -60,8 +59,8 @@ const ProfilePhotoDropZone = (props) => {
 
   const makeClientCrop = async () => {
     if (imageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImg(imageRef, crop, 'newFile.jpeg');
-      setCroppedImage(croppedImage);
+      const croppedImage = getCroppedImg(imageRef, crop);
+      setCroppedImage(croppedImage)
     }
   };
 
