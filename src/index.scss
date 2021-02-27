@@ -107,6 +107,7 @@ button:disabled {
   background-color: #0a4981;
   color: #fff;
   transition: background-color 0.3s ease;
+  padding: 7px 15px;
 
   &:hover {
     background-color: lighten($color: #0a4981, $amount: 7%);
