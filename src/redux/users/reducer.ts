@@ -6,7 +6,7 @@ import {
   TOGGLE_IS_FETCHING_USERS,
   SET_FOLLOWING_PROCESS_USER_ID,
   CLEAR_USERS_STATE,
-} from './constants';
+} from './action-types';
 import { UsersState, User } from './types';
 
 const initialState: UsersState = {

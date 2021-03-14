@@ -32,7 +32,7 @@ const Layout = () => {
           <PrivateRoute path="/profile/:userId?" component={ProfileContainer} />
           <PrivateRoute path="/dialogs" component={Dialogs} />
           <PrivateRoute path="/users" component={UsersContainer} />
-          <PrivateRoute path="/friends" component={UsersContainer} />
+          {/* <PrivateRoute path="/friends" component={UsersContainer} /> */}
           <PrivateRoute path="*" component={NotFoundPage} />
         </Switch>
       </div>

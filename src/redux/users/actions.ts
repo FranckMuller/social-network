@@ -6,7 +6,7 @@ import {
   TOGGLE_IS_FETCHING_USERS,
   SET_FOLLOWING_PROCESS_USER_ID,
   CLEAR_USERS_STATE,
-} from './constants';
+} from './action-types';
 import { followUserApi, unFollowUserApi, getUsersApi } from '../../api/users';
 import { UsersAction, UsersThunk } from './types';
 
@@ -54,7 +54,7 @@ const setUsers = (users: any, usersCount: number): UsersAction => {
   };
 };
 
-const setCurrentPage = (page: number): UsersAction => {
+export const setCurrentPage = (page: number): UsersAction => {
   return {
     type: SET_CURRENT_PAGE,
     payload: {
@@ -96,10 +96,8 @@ export const unFollowUser = (userId: string): UsersThunk => {
 
 export const fetchUsers = (page: number, pageSize: number): UsersThunk => {
   return async (dispatch) => {
-    dispatch(setCurrentPage(page));
     dispatch(toggleIsFetchingUsers(true));
     const response = await getUsersApi(page, pageSize);
     dispatch(setUsers(response.users, response.usersCount));
-    dispatch(toggleIsFetchingUsers(false));
   };
 };

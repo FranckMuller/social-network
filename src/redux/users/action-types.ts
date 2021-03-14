@@ -1,0 +1,19 @@
+export const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE'
+export const SET_USERS = 'users/SET_USERS'
+export const FOLLOW_USER = 'users/FOLLOW_USER'
+export const UNFOLLOW_USER = 'users/UNFOLLOW_USER'
+export const TOGGLE_IS_FETCHING_USERS = 'users/TOGGLE_IS_FETCHING_USERS'
+export const SET_FOLLOWING_PROCESS_USER_ID = 'users/SET_FOLLOWING_PROCESS_USER_ID'
+export const CLEAR_USERS_STATE = 'users/CLEAR_USERS_STATE'
+
+const usersTypes = {
+  SET_CURRENT_PAGE,
+  SET_USERS,
+  FOLLOW_USER,
+  UNFOLLOW_USER,
+  TOGGLE_IS_FETCHING_USERS,
+  SET_FOLLOWING_PROCESS_USER_ID,
+  CLEAR_USERS_STATE,
+}
+
+export default usersTypes
