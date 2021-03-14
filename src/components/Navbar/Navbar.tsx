@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
       <NavbarTop />
       <ul>
         <li>
-          <NavLink activeClassName={styles.active} to="/profile">
+          <NavLink exact activeClassName={styles.active} to="/profile">
             Моя страница
           </NavLink>
         </li>

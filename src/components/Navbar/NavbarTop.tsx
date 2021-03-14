@@ -1,18 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { selectAuthedUserFullName } from '../../redux/auth/selectors';
-import { RootState } from '../../redux/store';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { selectNavbarAuthedUserInfo } from '../../redux/auth/selectors'
 
-import styles from './Navbar.module.scss';
-import defaultMiniature from '../../assets/images/user-miniature.svg';
+import styles from './Navbar.module.scss'
+import defaultMiniature from '../../assets/images/user-miniature.svg'
 
-type MapStateProps = {
-  fullname: string;
-  photo: string | null;
-};
+const NavbarTop: React.FC = () => {
+  const { fullname, photo } = useSelector(selectNavbarAuthedUserInfo)
 
-const NavbarTop: React.FC<MapStateProps> = ({ fullname, photo }) => {
   return (
     <div className={styles.navbarTop}>
       <div className={styles.photo}>
@@ -25,14 +21,7 @@ const NavbarTop: React.FC<MapStateProps> = ({ fullname, photo }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    fullname: selectAuthedUserFullName(state),
-    photo: state.profile.userProfile.photos.small,
-  };
-};
-
-export default connect<MapStateProps, {}, {}, RootState>(mapStateToProps)(NavbarTop);
+export default NavbarTop

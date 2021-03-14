@@ -23,7 +23,7 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ photo, urlParamUserId, auth
   };
 
   if (!photo && (urlParamUserId === authedUserId || !urlParamUserId)) {
-    return <ProfilePhotoDropZone />;
+    return <ProfilePhotoDropZone handlerAfterSave={onClose} />;
   }
 
   return (

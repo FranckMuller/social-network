@@ -1,15 +1,24 @@
-import { SET_AUTH_DATA, CLEAR_AUTH_STATE, UPDATE_AUTH_STATE } from './constants';
-import { AuthState } from './types';
-import { AuthAction } from './types';
+import {
+  SET_AUTH_DATA,
+  CLEAR_AUTH_STATE,
+  UPDATE_AUTH_STATE,
+  SET_IS_PROCESSING,
+  SET_AJAX_ERROR,
+  SET_PHOTO
+} from './action-types'
+import { AuthState, AuthAction } from './types'
 
 export const initialState: AuthState = {
   id: null,
   name: null,
   email: null,
+  photo: null,
   surname: null,
   accessToken: null,
   isAuthed: false,
-};
+  isProcessing: false,
+  serverError: null,
+}
 
 const authReducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
@@ -18,20 +27,43 @@ const authReducer = (state = initialState, action: AuthAction): AuthState => {
         ...state,
         ...action.payload.authData,
         isAuthed: true,
-      };
+        isProcessing: false,
+      }
 
     case UPDATE_AUTH_STATE:
       return {
         ...state,
         ...action.payload.updates,
-      };
+      }
+
+    case SET_IS_PROCESSING:
+      return {
+        ...state,
+        isProcessing: true,
+      }
+
+    case SET_AJAX_ERROR:
+      return {
+        ...state,
+        serverError: [action.payload.error],
+        isProcessing: false,
+      }
 
     case CLEAR_AUTH_STATE:
-      return initialState;
+      return {
+        ...state,
+        ...initialState,
+      }
+
+    case SET_PHOTO:
+      return {
+        ...state,
+        photo: action.payload.photo,
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default authReducer;
+export default authReducer

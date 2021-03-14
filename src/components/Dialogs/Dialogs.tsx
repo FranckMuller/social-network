@@ -1,10 +1,9 @@
-import React from 'react';
-import { MessagesContainer } from './Messages/MessagesContainer';
-import { DialogsListContainer } from './DialogsList/DialogsListContainer';
-import { DialogsFormContainer } from './DialogsForm/DialogsFormContainer';
-import withMappedRouterProps from '../hoc/WithMappedRouterProps';
+import React from 'react'
+import { MessagesContainer } from './Messages/MessagesContainer'
+import { DialogsListContainer } from './DialogsList/DialogsListContainer'
+import { DialogsFormContainer } from './DialogsForm/DialogsFormContainer'
 
-import styles from './Dialogs.module.scss';
+import styles from './Dialogs.module.scss'
 
 const Dialogs: React.FC = () => {
   return (
@@ -15,7 +14,7 @@ const Dialogs: React.FC = () => {
         <DialogsFormContainer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default withMappedRouterProps()(Dialogs);
+export default Dialogs

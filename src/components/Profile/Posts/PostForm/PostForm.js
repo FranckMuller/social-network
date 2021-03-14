@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './PostForm.module.scss';
 
 export const PostForm = ({
-  newPostCurrentValue,
+  newPostMessage,
   addPost,
   changeNewPostMessage,
 }) => {
@@ -22,7 +22,7 @@ export const PostForm = ({
       <form onSubmit={onSubmitForm}>
         <textarea
           onChange={onChangeTextareaValue}
-          value={newPostCurrentValue}
+          value={newPostMessage}
           className={styles.formTextarea}
           type="text"
           placeholder="Что у Вас нового?"

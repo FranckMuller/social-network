@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Redirect, Switch } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Redirect, Switch, useLocation } from 'react-router-dom'
 import { selectIsAuthed } from '../../redux/auth/selectors'
 import PrivateRoute from '../../PrivateRoute'
 import Navbar from '../Navbar/Navbar'
@@ -10,21 +10,22 @@ import UsersContainer from '../Users/UsersContainer'
 import EditProfileFormContainer from '../Profile/EditProfileForm/EditProfileFormContainer'
 
 import styles from './Layout.module.scss'
-import withMappedRouterProps from '../hoc/WithMappedRouterProps'
-import { compose } from 'redux'
 
 const NotFoundPage = () => {
   return <div>not found page</div>
 }
 
-const Layout = (props: any) => {
-  if (props.location.pathname === '/' && props.isAuthed) {
+const Layout = () => {
+  const isAuthed = useSelector(selectIsAuthed)
+  const { pathname } = useLocation()
+
+  if (pathname === '/' && isAuthed) {
     return <Redirect to="/profile" />
   }
 
   return (
     <div className={`${styles.mainContainer} container`}>
-      {props.isAuthed && <Navbar />}
+      {isAuthed && <Navbar />}
       <div className={styles.content}>
         <Switch>
           <PrivateRoute exact path="/profile/edit" component={EditProfileFormContainer} />
@@ -38,17 +39,4 @@ const Layout = (props: any) => {
     </div>
   )
 }
-
-const mapStateToProps = (state: any) => {
-  return {
-    isAuthed: selectIsAuthed(state),
-  }
-}
-
-const mapRouterProps = (props: any) => {
-  return {
-    location: props.location,
-  }
-}
-
-export default compose(withMappedRouterProps(mapRouterProps), connect(mapStateToProps))(Layout)
+export default Layout

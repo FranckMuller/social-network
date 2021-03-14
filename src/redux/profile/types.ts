@@ -2,19 +2,15 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../store';
 import { CHANGE_NEW_POST_MESSAGE, ADD_POST, SET_USER_PROFILE, UPDATE_USER_PROFILE } from './constants';
 
-type Post = {
-  author: {
-    name: string;
-    photo: string;
-  };
+export type Post = {
   message: string;
   created: string;
   id: number;
 };
 
 export type UserProfile = {
-  name?: string;
-  surname?: string;
+  name: string | '';
+  surname: string | '';
   email?: string;
   location?: {
     country?: string;
@@ -47,7 +43,7 @@ export type UserProfileUpdates = {
 export type ProfileState = {
   posts: [] | Array<Post>;
   userProfile: UserProfile;
-  newPostCurrentValue: string;
+  newPostMessage: string;
 };
 
 type ChangeNewPostMessage = {

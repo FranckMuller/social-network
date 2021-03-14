@@ -7,7 +7,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    newPostCurrentValue: state.profile.newPostCurrentValue,
+    newPostMessage: state.profile.newPostMessage,
   };
 };
 
