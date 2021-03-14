@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUsers, setCurrentPage } from '../../redux/users/actions'
 import Users from './Users'
-import { Pagination } from '../Pagination/Pagination'
+import Pagination from '../Pagination/Pagination'
 import { selectUsersState } from '../../redux/users/selectors'
 
 import styles from './Users.module.scss'
