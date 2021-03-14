@@ -1,38 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { followUser, unFollowUser } from '../../redux/users/actions';
-import UserItem from './UserItem';
-import { User } from '../../redux/users/types';
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { followUser, unFollowUser } from '../../redux/users/actions'
+import UserItem from './UserItem'
+import { User } from '../../redux/users/types'
 
-type OwnProps = {
-  user: User;
-  followingProcessUsers: Array<string>;
-  key: string;
-};
+type UserItemContainerProps = {
+  user: User
+  followingProcessUsers: Array<string>
+}
 
-type MapDispatchProps = {
-  followUser: (id: string) => void;
-  unFollowUser: (id: string) => void;
-};
+const UserItemContainer: React.FC<UserItemContainerProps> = ({ user, followingProcessUsers }) => {
+  const dispatch = useDispatch()
 
-type UserItemContainerProps = OwnProps & MapDispatchProps;
-
-const UserItemContainer: React.FC<UserItemContainerProps> = ({
-  user,
-  followUser,
-  unFollowUser,
-  followingProcessUsers,
-}) => {
   const onFollowUser = (userId: string) => {
-    followUser(userId);
-  };
+    dispatch(followUser(userId))
+  }
 
   const onUnFollowUser = (userId: string) => {
-    unFollowUser(userId);
-  };
+    dispatch(unFollowUser(userId))
+  }
 
-  let isFetchingFollowing = false;
-  if (followingProcessUsers.some((id) => id === user._id)) isFetchingFollowing = true;
+  let isFetchingFollowing = false
+  if (followingProcessUsers.some((id) => id === user._id)) isFetchingFollowing = true
 
   return (
     <UserItem
@@ -41,12 +30,7 @@ const UserItemContainer: React.FC<UserItemContainerProps> = ({
       user={user}
       isFetchingFollowing={isFetchingFollowing}
     />
-  );
-};
+  )
+}
 
-const mapDispatchToProps = {
-  followUser,
-  unFollowUser,
-};
-
-export default connect<null, MapDispatchProps, OwnProps>(null, mapDispatchToProps)(UserItemContainer);
+export default UserItemContainer

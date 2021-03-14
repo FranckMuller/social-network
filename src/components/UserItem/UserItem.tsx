@@ -1,12 +1,20 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Button from '../Button/Button';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import Button from '../Button/Button'
+import { User } from '../../redux/users/types'
 
-import defaultMiniature from '../../assets/images/user-miniature.svg';
-import styles from './UserItem.module.scss';
+import defaultMiniature from '../../assets/images/user-miniature.svg'
+import styles from './UserItem.module.scss'
 
-const UserItem = ({ user, onFollowUser, onUnFollowUser, isFetchingFollowing }) => {
-  const stylesBtn = { fontWeight: 500, fontSize: '12.5px' };
+type UserItemProps = {
+  user: User
+  isFetchingFollowing: boolean
+  onFollowUser: (userId: string) => void
+  onUnFollowUser: (userId: string) => void
+}
+
+const UserItem: React.FC<UserItemProps> = ({ user, onFollowUser, onUnFollowUser, isFetchingFollowing }: any) => {
+  const stylesBtn = { fontWeight: 500, fontSize: '12.5px' }
 
   return (
     <div className={styles.userItem} key={user._id}>
@@ -32,7 +40,7 @@ const UserItem = ({ user, onFollowUser, onUnFollowUser, isFetchingFollowing }) =
               isDisabled={isFetchingFollowing}
               onClickHandler={() => onUnFollowUser(user._id)}
               styles={stylesBtn}
-              classNames="btn-primary"
+              classNames={["btn-primary"]}
             />
           ) : (
             <Button
@@ -40,13 +48,13 @@ const UserItem = ({ user, onFollowUser, onUnFollowUser, isFetchingFollowing }) =
               isDisabled={isFetchingFollowing}
               onClickHandler={() => onFollowUser(user._id)}
               styles={stylesBtn}
-              classNames="btn-primary"
+              classNames={["btn-primary"]}
             />
           )}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserItem;
+export default UserItem
