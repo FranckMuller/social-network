@@ -14,7 +14,7 @@ export const selectNavbarAuthedUserInfo = (state: RootState) => {
   }
 }
 
-export const selectAuthedUserId = (state: RootState) => {
+export const selectAuthedUserId = (state: RootState): string | null => {
   return state.auth.id
 }
 

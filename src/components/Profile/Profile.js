@@ -5,7 +5,7 @@ import PostsContainer from './Posts/PostsContainer';
 const Profile = ({ userProfile, urlParamUserId, authedUserId }) => {
   return (
     <div className="profile">
-      <UserProfileContainer authedUserId={authedUserId} urlParamUserId={urlParamUserId} profile={userProfile} />
+      <UserProfileContainer authedUserId={authedUserId} urlParamUserId={urlParamUserId} userProfile={userProfile} />
       <PostsContainer />
     </div>
   );

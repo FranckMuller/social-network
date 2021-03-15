@@ -1,24 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { fetchSignout } from '../../redux/auth/actions';
-import { RootState } from '../../redux/store';
-import { selectIsAuthed } from '../../redux/auth/selectors';
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { fetchSignout } from '../../redux/auth/actions'
+import { selectIsAuthed } from '../../redux/auth/selectors'
 
-import styles from './AppHeader.module.scss';
-import logo from './logo.svg';
+import styles from './AppHeader.module.scss'
+import logo from './logo.svg'
 
-type MapStateProps = {
-  isAuthed: boolean;
-};
+const AppHeader: React.FC = () => {
+  const isAuthed = useSelector(selectIsAuthed)
+  const dispatch = useDispatch()
 
-type MapDispatchProps = {
-  fetchSignout: () => void;
-};
+  const onFetchSignout = () => {
+    dispatch(fetchSignout())
+  }
 
-type AppHeaderProps = MapStateProps & MapDispatchProps;
-
-const AppHeader: React.FC<AppHeaderProps> = ({ isAuthed, fetchSignout }) => {
   return (
     <div className={styles.appHeader}>
       <div className="container">
@@ -28,7 +24,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isAuthed, fetchSignout }) => {
         </div>
 
         {isAuthed ? (
-          <button onClick={fetchSignout}>Выйти</button>
+          <button onClick={onFetchSignout}>Выйти</button>
         ) : (
           <div className={styles.linkGroup}>
             <NavLink activeClassName={styles.active} to="/login">
@@ -41,20 +37,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isAuthed, fetchSignout }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-const mapDispatchToProps = {
-  fetchSignout,
-};
-
-const mapStateToProps = (state: RootState) => {
-  return {
-    isAuthed: selectIsAuthed(state),
-  };
-};
-
-export default connect<MapStateProps, MapDispatchProps, AppHeaderProps, RootState>(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppHeader);
+export default AppHeader

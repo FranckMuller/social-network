@@ -1,9 +1,4 @@
-import {
-  CHANGE_NEW_POST_MESSAGE,
-  ADD_POST,
-  SET_USER_PROFILE,
-  UPDATE_USER_PROFILE,
-} from './constants'
+import { CHANGE_NEW_POST_MESSAGE, ADD_POST, SET_USER_PROFILE, UPDATE_USER_PROFILE, SET_IS_FETCHING } from './constants'
 import { ProfileState } from './types'
 
 const initialState: ProfileState = {
@@ -34,6 +29,7 @@ const initialState: ProfileState = {
     },
   },
   newPostMessage: '',
+  isFetching: false,
 }
 
 const profileReducer = (state = initialState, action: any): ProfileState => {
@@ -60,6 +56,12 @@ const profileReducer = (state = initialState, action: any): ProfileState => {
       return {
         ...state,
         userProfile: action.payload.userProfile,
+      }
+
+    case SET_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.payload.flag,
       }
 
     case UPDATE_USER_PROFILE: {

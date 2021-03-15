@@ -3,6 +3,7 @@ import {
   ADD_POST,
   SET_USER_PROFILE,
   UPDATE_USER_PROFILE,
+  SET_IS_FETCHING
 } from './constants'
 import { ProfileAction, UserProfile, ProfileThunk, UserProfileUpdates } from './types'
 import { setPhoto, updateAuthState } from '../auth/actions'
@@ -43,10 +44,21 @@ const updateUserProfile = (userUpdates: {}): ProfileAction => {
   }
 }
 
+const setIsFetching = (flag: boolean): ProfileAction => {
+  return {
+    type: SET_IS_FETCHING,
+    payload: {
+      flag
+    }
+  }
+}
+
 export const fetchUserProfile = (userId: string): ProfileThunk => {
   return async (dispatch) => {
+    dispatch(setIsFetching(true))
     const user = await getUserProfileApi(userId)
     dispatch(setUserProfile(user))
+    dispatch(setIsFetching(false))
   }
 }
 

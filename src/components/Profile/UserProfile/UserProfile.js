@@ -5,36 +5,36 @@ import ProfilePhoto from './ProfilePhoto/ProfilePhoto';
 
 import styles from './User.module.scss';
 
-const UserProfile = ({ profile, urlParamUserId, authedUserId }) => {
+const UserProfile = ({ userProfile, urlParamUserId, authedUserId }) => {
   const now = moment(new Date());
-  const profileLastActivity = moment(profile.lastActivity);
+  const profileLastActivity = moment(userProfile.lastActivity);
 
   return (
     <div className={styles.user}>
-      <ProfilePhoto authedUserId={authedUserId} urlParamUserId={urlParamUserId} photo={profile.photos.large} />
+      <ProfilePhoto authedUserId={authedUserId} urlParamUserId={urlParamUserId} photo={userProfile.photos.large} />
 
       <div className={styles.userData}>
         <div className={styles.userDataTop}>
           <div className={styles.name}>
-            {profile.name} {profile.surname}
+            {userProfile.name} {userProfile.surname}
           </div>
           <div className={styles.lastActivity}>
-            {now.diff(profileLastActivity, 'minute') > 5 ? moment(profile.lastActivity).fromNow() : 'online'}
+            {now.diff(profileLastActivity, 'minute') > 5 ? moment(userProfile.lastActivity).fromNow() : 'online'}
           </div>
           <div className={styles.status}>
             <ProfileStatusContainer />
           </div>
         </div>
         <div className={styles.mainInfo}>
-          {profile.birthDate && (
+          {userProfile.birthDate && (
             <div className={styles.birthDate}>
-              День рождения: <span>{profile.birthDate}</span>
+              День рождения: <span>{userProfile.birthDate}</span>
             </div>
           )}
 
-          {profile.location && profile.location.city && (
+          {userProfile.location && userProfile.location.city && (
             <div className={styles.city}>
-              Город: <span>{profile.location.city}</span>
+              Город: <span>{userProfile.location.city}</span>
             </div>
           )}
 

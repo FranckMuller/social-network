@@ -4,3 +4,23 @@ export const UPDATE_AUTH_STATE = 'auth/UPDATE_AUTH_STATE'
 export const SET_IS_PROCESSING = 'auth/SET_IS_PROCESSING'
 export const SET_AJAX_ERROR = 'auth/SET_AJAX_ERROR'
 export const SET_PHOTO = 'auth/SET_PHOTO'
+
+type Types = {
+  SET_AUTH_DATA: typeof SET_AUTH_DATA
+  CLEAR_AUTH_STATE: typeof CLEAR_AUTH_STATE
+  UPDATE_AUTH_STATE: typeof UPDATE_AUTH_STATE
+  SET_IS_PROCESSING: typeof SET_IS_PROCESSING
+  SET_AJAX_ERROR: typeof SET_AJAX_ERROR
+  SET_PHOTO: typeof SET_PHOTO
+}
+
+const types: Types = {
+  SET_AUTH_DATA,
+  CLEAR_AUTH_STATE,
+  UPDATE_AUTH_STATE,
+  SET_IS_PROCESSING,
+  SET_AJAX_ERROR,
+  SET_PHOTO,
+}
+
+export default types

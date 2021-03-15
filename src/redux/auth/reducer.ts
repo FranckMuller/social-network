@@ -1,5 +1,4 @@
-import {
-  SET_AUTH_DATA,
+import types, {
   CLEAR_AUTH_STATE,
   UPDATE_AUTH_STATE,
   SET_IS_PROCESSING,
@@ -22,7 +21,7 @@ export const initialState: AuthState = {
 
 const authReducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
-    case SET_AUTH_DATA:
+    case types.SET_AUTH_DATA:
       return {
         ...state,
         ...action.payload.authData,

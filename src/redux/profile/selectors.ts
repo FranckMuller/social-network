@@ -1,7 +1,7 @@
 import { RootState } from '../store'
 
-export const selectUserProfile = (state: RootState) => {
-  return state.profile.userProfile
+export const selectProfileState = (state: RootState) => {
+  return state.profile
 }
 
 export const selectUserPostDataInfo = (state: RootState) => {

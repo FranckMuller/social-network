@@ -1,4 +1,4 @@
-import {
+import types, {
   SET_AUTH_DATA,
   CLEAR_AUTH_STATE,
   UPDATE_AUTH_STATE,
@@ -38,7 +38,7 @@ export type LoginData = {
 }
 
 export type SetAuthData = {
-  type: typeof SET_AUTH_DATA
+  type: typeof types.SET_AUTH_DATA
   payload: {
     authData: AuthData
   }

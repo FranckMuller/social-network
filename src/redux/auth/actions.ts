@@ -1,5 +1,4 @@
-import {
-  SET_AUTH_DATA,
+import types, {
   CLEAR_AUTH_STATE,
   UPDATE_AUTH_STATE,
   SET_IS_PROCESSING,
@@ -37,7 +36,7 @@ export const updateAuthState = (updates: {}): AuthAction => {
 
 const setAuthData = (authData: AuthData): AuthAction => {
   return {
-    type: SET_AUTH_DATA,
+    type: types.SET_AUTH_DATA,
     payload: {
       authData,
     },
