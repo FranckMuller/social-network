@@ -9,23 +9,23 @@ export type Post = {
 }
 
 export type UserProfile = {
+  _id: string
   name: string | ''
   surname: string | ''
-  email?: string
-  location?: {
-    country?: string
-    city?: string
+  email: string
+  location: {
+    country: string
+    city: string
   }
   photos: {
     large: string
     small: string
   }
-  following?: Array<string>
-  followers?: Array<string>
-  lastActivity?: Date
-  _id?: string
-  created?: Date
-  birthDate?: string
+  following: Array<string> | null
+  followers: Array<string> | null
+  lastActivity: Date | null
+  created: Date | null
+  birthDate: string
   status: string
 }
 
