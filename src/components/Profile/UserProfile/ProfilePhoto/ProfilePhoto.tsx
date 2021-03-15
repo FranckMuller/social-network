@@ -6,9 +6,9 @@ import styles from './ProfilePhoto.module.scss';
 import { CloudUploadOutlined, RadiusUprightOutlined } from '@ant-design/icons';
 
 type ProfilePhotoProps = {
-  photo?: string;
-  urlParamUserId?: string;
-  authedUserId: string;
+  photo: string;
+  urlParamUserId: string | undefined;
+  authedUserId: string | null;
 };
 
 const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ photo, urlParamUserId, authedUserId }) => {

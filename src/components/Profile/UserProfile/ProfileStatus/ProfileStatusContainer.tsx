@@ -1,54 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import ProfileStatus from './ProfileStatus';
-import { connect } from 'react-redux';
-import { fetchUserProfileUpdate } from '../../../../redux/profile/actions';
-import { RootState } from '../../../../redux/store';
-import { selectProfileStatus } from '../../../../redux/profile/selectors';
+import React, { useState, useEffect } from 'react'
+import ProfileStatus from './ProfileStatus'
+import { useDispatch } from 'react-redux'
+import { fetchUserProfileUpdate } from '../../../../redux/profile/actions'
 
-type MapStateProps = {
-  status: string;
-};
+type ProfileStatusContainerProps = {
+  status: string
+  authedUserId: string | null
+  urlParamUserId: string | undefined
+}
 
-type MapDispatchProps = {
-  fetchUserProfileUpdate: (userData: { status: string }) => void;
-};
-
-type ProfileStatusContainerProps = MapStateProps & MapDispatchProps;
-
-const ProfileStatusContainer: React.FC<ProfileStatusContainerProps> = ({ status, fetchUserProfileUpdate }) => {
-  const [isEditMode, setIseditmode] = useState(false);
-  const [localStatus, setStatus] = useState('');
-  const [inputStatusValue, setInputStatusValue] = useState('');
+const ProfileStatusContainer: React.FC<ProfileStatusContainerProps> = ({ status, ...rest }) => {
+  const [isEditMode, setIseditmode] = useState(false)
+  const [localStatus, setStatus] = useState('')
+  const [inputStatusValue, setInputStatusValue] = useState('')
+  const dispatch = useDispatch()
 
   const changeStatus = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    setInputStatusValue(e.currentTarget.value);
-  };
+    setInputStatusValue(e.currentTarget.value)
+  }
 
   const focusInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    e.currentTarget.select();
-  };
+    e.currentTarget.select()
+  }
 
   const activateEditMode = () => {
-    setIseditmode(true);
-  };
+    setIseditmode(true)
+  }
 
   const deactivateEditMode = () => {
-    setIseditmode(false);
-  };
+    setIseditmode(false)
+  }
 
   const updateStatus = () => {
     if (inputStatusValue !== null) {
-      fetchUserProfileUpdate({ status: inputStatusValue });
-      setIseditmode(false);
+      dispatch(fetchUserProfileUpdate({ status: inputStatusValue }))
+      setIseditmode(false)
     }
-  };
+  }
 
   useEffect(() => {
     if (status !== '') {
-      setStatus(status);
-      setInputStatusValue(status);
+      setStatus(status)
+      setInputStatusValue(status)
     }
-  }, [status]);
+  }, [status])
 
   return (
     <ProfileStatus
@@ -60,21 +55,9 @@ const ProfileStatusContainer: React.FC<ProfileStatusContainerProps> = ({ status,
       isEditMode={isEditMode}
       inputValue={inputStatusValue}
       onUpdateStatus={updateStatus}
+      {...rest}
     />
-  );
-};
+  )
+}
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    status: selectProfileStatus(state),
-  };
-};
-
-const mapDispatchToProps = {
-  fetchUserProfileUpdate,
-};
-
-export default connect<MapStateProps, MapDispatchProps, {}, RootState>(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileStatusContainer);
+export default ProfileStatusContainer

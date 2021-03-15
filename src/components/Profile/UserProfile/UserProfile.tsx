@@ -2,10 +2,17 @@ import React from 'react';
 import moment from 'moment';
 import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer';
 import ProfilePhoto from './ProfilePhoto/ProfilePhoto';
+import { UserProfile as userProfileType } from '../../../redux/profile/types'
 
 import styles from './User.module.scss';
 
-const UserProfile = ({ userProfile, urlParamUserId, authedUserId }) => {
+export type UserProfileProps = {
+  authedUserId: string | null
+  urlParamUserId: string | undefined
+  userProfile: userProfileType
+}
+
+const UserProfile: React.FC<UserProfileProps> = ({ userProfile, urlParamUserId, authedUserId }) => {
   const now = moment(new Date());
   const profileLastActivity = moment(userProfile.lastActivity);
 
@@ -22,7 +29,7 @@ const UserProfile = ({ userProfile, urlParamUserId, authedUserId }) => {
             {now.diff(profileLastActivity, 'minute') > 5 ? moment(userProfile.lastActivity).fromNow() : 'online'}
           </div>
           <div className={styles.status}>
-            <ProfileStatusContainer />
+            <ProfileStatusContainer authedUserId={authedUserId} urlParamUserId={urlParamUserId} status={userProfile.status} />
           </div>
         </div>
         <div className={styles.mainInfo}>

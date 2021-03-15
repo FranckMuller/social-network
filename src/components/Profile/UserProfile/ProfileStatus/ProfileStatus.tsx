@@ -1,34 +1,43 @@
-import React from 'react';
-import Button from '../../../Button/Button';
+import React from 'react'
+import Button from '../../../Button/Button'
 
-import styles from './ProfileStatus.module.scss';
+import styles from './ProfileStatus.module.scss'
 
 type ProfileStatusProps = {
-  status: string;
-  inputValue: string;
-  isEditMode: boolean;
-  onActivateEditMode: () => void;
-  onDeactivateEditMode: () => void;
-  onChangeStatus: (e: React.SyntheticEvent<HTMLInputElement>) => void;
-  onFocusInput: (e: React.SyntheticEvent<HTMLInputElement>) => void;
-  onUpdateStatus: () => void;
-};
+  status: string
+  inputValue: string
+  isEditMode: boolean
+  authedUserId: string | null
+  urlParamUserId: string | undefined
+  onActivateEditMode: () => void
+  onDeactivateEditMode: () => void
+  onChangeStatus: (e: React.SyntheticEvent<HTMLInputElement>) => void
+  onFocusInput: (e: React.SyntheticEvent<HTMLInputElement>) => void
+  onUpdateStatus: () => void
+}
 
 const ProfileStatus: React.FC<ProfileStatusProps> = ({
   status,
   inputValue,
   isEditMode,
+  authedUserId,
+  urlParamUserId,
   onActivateEditMode,
   onDeactivateEditMode,
   onChangeStatus,
   onFocusInput,
   onUpdateStatus,
 }) => {
+  const isOwnStatusShowed = !urlParamUserId && status
+  let displayedStatus
+  if (!urlParamUserId && status) displayedStatus = status
+  if (!urlParamUserId && !status) displayedStatus = <span>добавить статус</span>
   return (
     <>
       {!isEditMode ? (
         <div className={styles.status} onClick={onActivateEditMode}>
-          {status ? status : <span>добавить статус</span>}
+          {displayedStatus}
+          {!isOwnStatusShowed && status}
         </div>
       ) : (
         <div className={styles.editPanel}>
@@ -37,12 +46,7 @@ const ProfileStatus: React.FC<ProfileStatusProps> = ({
           </div>
 
           <div className="btn-group">
-            <Button
-              text="Сохранить"
-              classNames={['btn-primary']}
-              styles={{ fontWeight: 600, fontSize: '.9rem' }}
-              onClickHandler={onUpdateStatus}
-            />
+            <Button text="Сохранить" classNames={['btn-primary']} styles={{ fontWeight: 600, fontSize: '.9rem' }} onClickHandler={onUpdateStatus} />
             <Button
               text="Отменить"
               classNames={['btn-secondary']}
@@ -53,7 +57,7 @@ const ProfileStatus: React.FC<ProfileStatusProps> = ({
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ProfileStatus;
+export default ProfileStatus

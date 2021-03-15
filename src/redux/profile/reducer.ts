@@ -66,7 +66,10 @@ const profileReducer = (state = initialState, action: any): ProfileState => {
     case SET_USER_PROFILE:
       return {
         ...state,
-        userProfile: action.payload.userProfile,
+        userProfile: {
+          ...state.userProfile,
+          ...action.payload.userProfile,
+        },
       }
 
     case SET_IS_FETCHING:
