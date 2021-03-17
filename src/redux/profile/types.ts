@@ -1,6 +1,6 @@
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../store'
-import { CHANGE_NEW_POST_MESSAGE, ADD_POST, SET_USER_PROFILE, UPDATE_USER_PROFILE, SET_IS_FETCHING } from './constants'
+import { CHANGE_NEW_POST_MESSAGE, ADD_POST, SET_USER_PROFILE, UPDATE_USER_PROFILE, SET_IS_FETCHING } from './action-types'
 
 export type Post = {
   message: string

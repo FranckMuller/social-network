@@ -5,7 +5,8 @@ import types, {
   SET_AJAX_ERROR,
   SET_PHOTO
 } from './action-types'
-import { AuthState, AuthAction } from './types'
+import { AuthActionTypes } from './actions'
+import { AuthState } from './types'
 
 export const initialState: AuthState = {
   id: null,
@@ -19,12 +20,12 @@ export const initialState: AuthState = {
   serverError: null,
 }
 
-const authReducer = (state = initialState, action: AuthAction): AuthState => {
+const authReducer = (state = initialState, action: AuthActionTypes): AuthState => {
   switch (action.type) {
     case types.SET_AUTH_DATA:
       return {
         ...state,
-        ...action.payload.authData,
+        ...action.authData,
         isAuthed: true,
         isProcessing: false,
       }

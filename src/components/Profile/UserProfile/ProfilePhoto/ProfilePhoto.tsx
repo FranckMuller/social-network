@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import ProfilePhotoDropZone from './ProfilePhotoDropZone';
+import React, { useState } from 'react'
+import ProfilePhotoDropZone from './ProfilePhotoDropZone'
 
-import avatar from './user-avatar.png';
-import styles from './ProfilePhoto.module.scss';
-import { CloudUploadOutlined, RadiusUprightOutlined } from '@ant-design/icons';
+import avatar from './user-avatar.png'
+import styles from './ProfilePhoto.module.scss'
+import { CloudUploadOutlined, RadiusUprightOutlined } from '@ant-design/icons'
 
 type ProfilePhotoProps = {
-  photo: string;
-  urlParamUserId: string | undefined;
-  authedUserId: string | null;
-};
+  photo: string
+  urlParamUserId: string | undefined
+  authedUserId: string | null
+}
 
 const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ photo, urlParamUserId, authedUserId }) => {
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false)
 
-  const onUpdatePhoto = () => {
-    setIsEditMode(true);
-  };
+  const onUpdatePhoto = (): void => {
+    setIsEditMode(true)
+  }
 
-  const onClose = () => {
-    setIsEditMode(false);
-  };
+  const onClose = (): void => {
+    setIsEditMode(false)
+  }
 
   if (!photo && (urlParamUserId === authedUserId || !urlParamUserId)) {
-    return <ProfilePhotoDropZone handlerAfterSave={onClose} />;
+    return <ProfilePhotoDropZone handlerAfterSave={onClose} />
   }
 
   return (
@@ -54,7 +54,7 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ photo, urlParamUserId, auth
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ProfilePhoto;
+export default ProfilePhoto

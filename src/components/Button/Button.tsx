@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 
 type ButtonProps = {
   text: string;
-  onClickHandler: () => void;
+  onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isDisabled?: boolean;
   styles?: CSSProperties;
   classNames?: Array<string>;

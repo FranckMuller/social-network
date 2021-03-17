@@ -12,14 +12,13 @@ type State = {
   serverError: string[] | null
 }
 
-const LoginFormContainer: React.FC = (props) => {
-  console.log(props)
+const LoginFormContainer: React.FC = () => {
   const { isProcessing, isAuthed, serverError } = useSelector<RootState, State>(
     (state) => state.auth,
   )
   const dispatch = useDispatch()
 
-  const submitForm = (loginData: LoginData) => {
+  const submitForm = (loginData: LoginData): void => {
     dispatch(fetchSignin(loginData))
   }
 

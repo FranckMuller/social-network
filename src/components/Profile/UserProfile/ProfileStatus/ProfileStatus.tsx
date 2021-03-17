@@ -1,4 +1,5 @@
 import React from 'react'
+import cn from 'classnames'
 import Button from '../../../Button/Button'
 
 import styles from './ProfileStatus.module.scss'
@@ -7,12 +8,11 @@ type ProfileStatusProps = {
   status: string
   inputValue: string
   isEditMode: boolean
-  authedUserId: string | null
   urlParamUserId: string | undefined
   onActivateEditMode: () => void
   onDeactivateEditMode: () => void
-  onChangeStatus: (e: React.SyntheticEvent<HTMLInputElement>) => void
-  onFocusInput: (e: React.SyntheticEvent<HTMLInputElement>) => void
+  onChangeStatus: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onFocusInput: (e: React.FocusEvent<HTMLInputElement>) => void
   onUpdateStatus: () => void
 }
 
@@ -20,7 +20,6 @@ const ProfileStatus: React.FC<ProfileStatusProps> = ({
   status,
   inputValue,
   isEditMode,
-  authedUserId,
   urlParamUserId,
   onActivateEditMode,
   onDeactivateEditMode,
@@ -33,11 +32,13 @@ const ProfileStatus: React.FC<ProfileStatusProps> = ({
   if (!urlParamUserId && status) displayedStatus = status
   if (!urlParamUserId && !status) displayedStatus = <span>добавить статус</span>
   return (
-    <>
+    <div className={styles.profileStatus}>
       {!isEditMode ? (
-        <div className={styles.status} onClick={onActivateEditMode}>
-          {displayedStatus}
-          {!isOwnStatusShowed && status}
+        <div className={styles.status}>
+          <span className={cn(styles.statusText)} onClick={onActivateEditMode}>
+            {displayedStatus}
+            {!isOwnStatusShowed && status}
+          </span>
         </div>
       ) : (
         <div className={styles.editPanel}>
@@ -47,16 +48,11 @@ const ProfileStatus: React.FC<ProfileStatusProps> = ({
 
           <div className="btn-group">
             <Button text="Сохранить" classNames={['btn-primary']} styles={{ fontWeight: 600, fontSize: '.9rem' }} onClickHandler={onUpdateStatus} />
-            <Button
-              text="Отменить"
-              classNames={['btn-secondary']}
-              styles={{ fontWeight: 600, fontSize: '.9rem' }}
-              onClickHandler={onDeactivateEditMode}
-            />
+            <Button text="Отменить" classNames={['btn-secondary']} styles={{ fontSize: '.9rem' }} onClickHandler={onDeactivateEditMode} />
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

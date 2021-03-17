@@ -4,7 +4,7 @@ import {
   SET_USER_PROFILE,
   UPDATE_USER_PROFILE,
   SET_IS_FETCHING
-} from './constants'
+} from './action-types'
 import { ProfileAction, UserProfile, ProfileThunk, UserProfileUpdates } from './types'
 import { setPhoto, updateAuthState } from '../auth/actions'
 import { getUserProfileApi } from '../../api/users'

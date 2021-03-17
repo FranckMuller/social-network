@@ -1,51 +1,68 @@
-import types, {
-  CLEAR_AUTH_STATE,
-  UPDATE_AUTH_STATE,
-  SET_IS_PROCESSING,
-  SET_AJAX_ERROR,
-  SET_PHOTO
-} from './action-types'
+import { SET_AUTH_DATA, CLEAR_AUTH_STATE, UPDATE_AUTH_STATE, SET_IS_PROCESSING, SET_AJAX_ERROR, SET_PHOTO } from './action-types'
 import { signinApi, signoutApi, signupApi } from '../../api/auth'
 import { stopSubmit } from 'redux-form'
-import { AuthAction, AuthData, AuthThunk, LoginData } from './types'
+import { RootState } from '../store'
+import { AuthData, LoginData } from './types'
+import { ThunkAction } from 'redux-thunk'
 import { updateLocalStorageAuthState } from '../../utils/auth'
 
-const setProcessing = (): AuthAction => {
+const inferLiteralFormString = <T extends string>(arg: T): T => {
+  return arg
+}
+
+export type AuthActionTypes =
+  | ReturnType<typeof setProcessing>
+  | ReturnType<typeof setAjaxErrors>
+  | ReturnType<typeof updateAuthState>
+  | ReturnType<typeof setAuthData>
+  | ReturnType<typeof clearAuthState>
+  | ReturnType<typeof setPhoto>
+
+export type AuthThunk = ThunkAction<Promise<void>, RootState, null, AuthActionTypes>
+
+export const setPhoto = (photo: string) => {
   return {
-    type: SET_IS_PROCESSING,
+    type: inferLiteralFormString(SET_PHOTO),
+    payload: {
+      photo,
+    },
   }
 }
 
-const setAjaxErrors = (error: string): AuthAction => {
+const setProcessing = () => {
   return {
-    type: SET_AJAX_ERROR,
+    type: inferLiteralFormString(SET_IS_PROCESSING),
+  }
+}
+
+const setAjaxErrors = (error: string) => {
+  return {
+    type: inferLiteralFormString(SET_AJAX_ERROR),
     payload: {
       error,
     },
   }
 }
 
-export const updateAuthState = (updates: {}): AuthAction => {
+export const updateAuthState = <T extends object>(updates: T) => {
   return {
-    type: UPDATE_AUTH_STATE,
+    type: inferLiteralFormString(UPDATE_AUTH_STATE),
     payload: {
       updates,
     },
   }
 }
 
-const setAuthData = (authData: AuthData): AuthAction => {
+const setAuthData = (authData: AuthData) => {
   return {
-    type: types.SET_AUTH_DATA,
-    payload: {
-      authData,
-    },
+    type: inferLiteralFormString(SET_AUTH_DATA),
+    authData,
   }
 }
 
-const clearAuthState = (): AuthAction => {
+const clearAuthState = () => {
   return {
-    type: CLEAR_AUTH_STATE,
+    type: inferLiteralFormString(CLEAR_AUTH_STATE),
   }
 }
 
@@ -83,30 +100,3 @@ export const fetchSignout = (): AuthThunk => {
     } catch (error) {}
   }
 }
-
-export const setPhoto = (photo: string) => {
-  return {
-    type: SET_PHOTO,
-    payload:{
-      photo
-    }
-  }
-}
-
-// export const fetchRegistration = (registrationData) => {
-//   return (dispatch) => {
-//     const fd = new FormData();
-//     for (let key in registrationData) {
-//       fd.append(key, registrationData[key]);
-//     }
-//     signupApi(fd).then((res) => {
-//       if (res.data.resultCode === 1) {
-//         console.log(res.data);
-//       } else {
-//         console.log(res.data);
-//         localStorage.setItem('authState', JSON.stringify(res.data));
-//         dispatch(setAuthData(res.data));
-//       }
-//     });
-//   };
-// };

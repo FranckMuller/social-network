@@ -5,7 +5,6 @@ import { fetchUserProfileUpdate } from '../../../../redux/profile/actions'
 
 type ProfileStatusContainerProps = {
   status: string
-  authedUserId: string | null
   urlParamUserId: string | undefined
 }
 
@@ -15,23 +14,23 @@ const ProfileStatusContainer: React.FC<ProfileStatusContainerProps> = ({ status,
   const [inputStatusValue, setInputStatusValue] = useState('')
   const dispatch = useDispatch()
 
-  const changeStatus = (e: React.SyntheticEvent<HTMLInputElement>) => {
+  const changeStatus = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputStatusValue(e.currentTarget.value)
   }
 
-  const focusInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
+  const focusInput = (e: React.FocusEvent<HTMLInputElement>): void => {
     e.currentTarget.select()
   }
 
-  const activateEditMode = () => {
+  const activateEditMode = (): void => {
     setIseditmode(true)
   }
 
-  const deactivateEditMode = () => {
+  const deactivateEditMode = (): void => {
     setIseditmode(false)
   }
 
-  const updateStatus = () => {
+  const updateStatus = (): void => {
     if (inputStatusValue !== null) {
       dispatch(fetchUserProfileUpdate({ status: inputStatusValue }))
       setIseditmode(false)
@@ -39,10 +38,8 @@ const ProfileStatusContainer: React.FC<ProfileStatusContainerProps> = ({ status,
   }
 
   useEffect(() => {
-    if (status !== '') {
-      setStatus(status)
-      setInputStatusValue(status)
-    }
+    setStatus(status)
+    setInputStatusValue(status)
   }, [status])
 
   return (

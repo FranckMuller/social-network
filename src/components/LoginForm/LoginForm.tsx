@@ -15,22 +15,22 @@ type LoginFormProps = {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isProcessing, serverError }) => {
-  const [commonError, setCommonrError] = useState<string | null>(null)
+  const [commonError, setCommonError] = useState<string | null>(null)
   const { register, handleSubmit, errors } = useForm<LoginData>({
     mode: 'onTouched',
     shouldFocusError: false,
     resolver: yupResolver(loginFormValidationSchema),
   })
 
-  const onFocusInput = () => {
+  const onFocusInput = (): void => {
     if (commonError) {
-      setCommonrError(null)
+      setCommonError(null)
     }
   }
 
   useEffect(() => {
     if (serverError) {
-      setCommonrError(serverError[0])
+      setCommonError(serverError[0])
     }
   }, [serverError])
 
