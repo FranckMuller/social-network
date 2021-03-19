@@ -1,7 +1,7 @@
 import React from 'react'
 import { Post } from './Post/Post'
 import { Post as PostType } from '../../../redux/profile/types'
-import { PostFormContainer } from './PostForm/PostFormContainer'
+import { PostForm } from './PostForm/PostForm'
 
 import styles from './Posts.module.scss'
 
@@ -16,7 +16,7 @@ type PostsProps = {
 const Posts: React.FC<PostsProps> = ({ author, posts }) => {
   return (
     <div className={styles.posts}>
-      <PostFormContainer />
+      <PostForm />
       {posts.map((post, idx) => {
         return (
           <Post

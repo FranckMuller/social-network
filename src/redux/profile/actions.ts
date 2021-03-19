@@ -1,34 +1,19 @@
-import {
-  CHANGE_NEW_POST_MESSAGE,
-  ADD_POST,
-  SET_USER_PROFILE,
-  UPDATE_USER_PROFILE,
-  SET_IS_FETCHING
-} from './action-types'
+import * as types from './action-types'
 import { ProfileAction, UserProfile, ProfileThunk, UserProfileUpdates } from './types'
 import { setPhoto, updateAuthState } from '../auth/actions'
 import { getUserProfileApi } from '../../api/users'
 import { updateUserProfileApi, updatePhotoProfileApi } from '../../api/profile'
 import { updateLocalStorageAuthState, getAuthStateUpdates } from '../../utils/auth'
 
-export const changeNewPostMessage = (value: string): ProfileAction => {
-  return {
-    type: CHANGE_NEW_POST_MESSAGE,
-    payload: {
-      value,
-    },
-  }
-}
-
 export const addPost = (): ProfileAction => {
   return {
-    type: ADD_POST,
+    type: types.ADD_POST,
   }
 }
 
 const setUserProfile = (userProfile: UserProfile): ProfileAction => {
   return {
-    type: SET_USER_PROFILE,
+    type: types.SET_USER_PROFILE,
     payload: {
       userProfile,
     },
@@ -37,7 +22,7 @@ const setUserProfile = (userProfile: UserProfile): ProfileAction => {
 
 const updateUserProfile = (userUpdates: {}): ProfileAction => {
   return {
-    type: UPDATE_USER_PROFILE,
+    type: types.UPDATE_USER_PROFILE,
     payload: {
       userUpdates,
     },
@@ -46,10 +31,10 @@ const updateUserProfile = (userUpdates: {}): ProfileAction => {
 
 const setIsFetching = (flag: boolean): ProfileAction => {
   return {
-    type: SET_IS_FETCHING,
+    type: types.SET_IS_FETCHING,
     payload: {
-      flag
-    }
+      flag,
+    },
   }
 }
 
@@ -84,6 +69,6 @@ export const fetchUpdateProfilePhoto = (profilePhotos: ProfilePhotos): ProfileTh
     const photos = await updatePhotoProfileApi(profilePhotos)
     dispatch(updateUserProfile({ photos: photos }))
     dispatch(setPhoto(photos.small))
-    updateLocalStorageAuthState({photo: photos.small})
+    updateLocalStorageAuthState({ photo: photos.small })
   }
 }

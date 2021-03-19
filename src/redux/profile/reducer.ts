@@ -1,4 +1,4 @@
-import { CHANGE_NEW_POST_MESSAGE, ADD_POST, SET_USER_PROFILE, UPDATE_USER_PROFILE, SET_IS_FETCHING } from './action-types'
+import * as types from './action-types'
 import { ProfileState } from './types'
 
 const initialState: ProfileState = {
@@ -45,13 +45,8 @@ const initialState: ProfileState = {
 
 const profileReducer = (state = initialState, action: any): ProfileState => {
   switch (action.type) {
-    case CHANGE_NEW_POST_MESSAGE:
-      return {
-        ...state,
-        newPostMessage: action.payload.value,
-      }
 
-    case ADD_POST:
+    case types.ADD_POST:
       const newPost = {
         message: state.newPostMessage,
         created: '21 янв в 14:51',
@@ -63,7 +58,7 @@ const profileReducer = (state = initialState, action: any): ProfileState => {
         posts: [...state.posts, newPost],
       }
 
-    case SET_USER_PROFILE:
+    case types.SET_USER_PROFILE:
       return {
         ...state,
         userProfile: {
@@ -72,13 +67,13 @@ const profileReducer = (state = initialState, action: any): ProfileState => {
         },
       }
 
-    case SET_IS_FETCHING:
+    case types.SET_IS_FETCHING:
       return {
         ...state,
         isFetching: action.payload.flag,
       }
 
-    case UPDATE_USER_PROFILE: {
+    case types.UPDATE_USER_PROFILE: {
       return {
         ...state,
         userProfile: {

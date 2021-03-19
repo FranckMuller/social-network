@@ -122,7 +122,7 @@ button:disabled {
 .btn-group {
   display: flex;
 
-  >.btn+.btn {
+  > .btn + .btn {
     margin-left: 0.5rem;
   }
 }
@@ -143,7 +143,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
 
-  &+.form-group {
+  & + .form-group {
     margin-top: 1rem;
   }
 
@@ -170,8 +170,24 @@ input {
   animation-name: autofill !important;
 }
 
+input,
+textarea {
+  &.has-error {
+    border-color: #d04848 !important;
+  }
+}
+
 input:-webkit-autofill {
   transition: background-color 50000s ease-in-out 0s !important;
+}
+
+// FORM ERROR MESSAGE
+.form-error-message {
+  color: #d04848;
+  display: block;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 // ANT SELECTS
@@ -182,8 +198,7 @@ input:-webkit-autofill {
 }
 
 .ant-select-dropdown {
-  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
-    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
 .ant-select-item-option:hover {
@@ -274,7 +289,6 @@ input:-webkit-autofill {
 .ant-picker-header-view button:hover {
   color: lighten(#0a4981, 10%);
 }
-
 
 // REACT CROP
 .ReactCrop {

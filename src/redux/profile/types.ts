@@ -1,6 +1,6 @@
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../store'
-import { CHANGE_NEW_POST_MESSAGE, ADD_POST, SET_USER_PROFILE, UPDATE_USER_PROFILE, SET_IS_FETCHING } from './action-types'
+import { ADD_POST, SET_USER_PROFILE, UPDATE_USER_PROFILE, SET_IS_FETCHING } from './action-types'
 
 export type Post = {
   message: string
@@ -47,13 +47,6 @@ export type ProfileState = {
   isFetching: boolean
 }
 
-type ChangeNewPostMessage = {
-  type: typeof CHANGE_NEW_POST_MESSAGE
-  payload: {
-    value: string
-  }
-}
-
 type AddPost = {
   type: typeof ADD_POST
 }
@@ -79,5 +72,5 @@ type SetIsFetching = {
   }
 }
 
-export type ProfileAction = ChangeNewPostMessage | AddPost | SetUserProfile | UpdateUserProfile | SetIsFetching
+export type ProfileAction = AddPost | SetUserProfile | UpdateUserProfile | SetIsFetching
 export type ProfileThunk = ThunkAction<Promise<void>, RootState, null, ProfileAction>

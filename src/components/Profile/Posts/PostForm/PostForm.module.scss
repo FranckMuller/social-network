@@ -3,12 +3,37 @@
 
   form {
     display: grid;
+    grid-template-rows: 35px auto ;
     grid-template-columns: 1fr auto;
-    grid-column-gap: 20px;
-    height: 30px;
+    grid-row-gap: 10px;
 
     .formTextarea {
       border-bottom: 1px solid #ddd;
+      grid-column: 1 / 3;
     }
+
+    button {
+      grid-column: 2 / 3;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .error {
+      animation-timing-function: ease;
+      animation-name: opacity-translate-show;
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes opacity-translate-show {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
