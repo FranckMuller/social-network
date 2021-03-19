@@ -1,10 +1,4 @@
-import types, {
-  CLEAR_AUTH_STATE,
-  UPDATE_AUTH_STATE,
-  SET_IS_PROCESSING,
-  SET_AJAX_ERROR,
-  SET_PHOTO
-} from './action-types'
+import * as types from './action-types'
 import { AuthActionTypes } from './actions'
 import { AuthState } from './types'
 
@@ -30,32 +24,32 @@ const authReducer = (state = initialState, action: AuthActionTypes): AuthState =
         isProcessing: false,
       }
 
-    case UPDATE_AUTH_STATE:
+    case types.UPDATE_AUTH_STATE:
       return {
         ...state,
         ...action.payload.updates,
       }
 
-    case SET_IS_PROCESSING:
+    case types.SET_IS_PROCESSING:
       return {
         ...state,
         isProcessing: true,
       }
 
-    case SET_AJAX_ERROR:
+    case types.SET_AJAX_ERROR:
       return {
         ...state,
         serverError: [action.payload.error],
         isProcessing: false,
       }
 
-    case CLEAR_AUTH_STATE:
+    case types.CLEAR_AUTH_STATE:
       return {
         ...state,
         ...initialState,
       }
 
-    case SET_PHOTO:
+    case types.SET_PHOTO:
       return {
         ...state,
         photo: action.payload.photo,

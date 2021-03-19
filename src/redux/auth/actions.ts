@@ -1,4 +1,4 @@
-import { SET_AUTH_DATA, CLEAR_AUTH_STATE, UPDATE_AUTH_STATE, SET_IS_PROCESSING, SET_AJAX_ERROR, SET_PHOTO } from './action-types'
+import * as types from './action-types'
 import { signinApi, signoutApi, signupApi } from '../../api/auth'
 import { stopSubmit } from 'redux-form'
 import { RootState } from '../store'
@@ -6,9 +6,15 @@ import { AuthData, LoginData } from './types'
 import { ThunkAction } from 'redux-thunk'
 import { updateLocalStorageAuthState } from '../../utils/auth'
 
-const inferLiteralFormString = <T extends string>(arg: T): T => {
+const inferLiteral = <U, T extends U>(arg: T): T=> {
   return arg
 }
+
+const inferLiteralFormString = <T extends string>(arg: T): T => {
+  return inferLiteral<string, T>(arg)
+}
+
+// type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never
 
 export type AuthActionTypes =
   | ReturnType<typeof setProcessing>
@@ -22,7 +28,7 @@ export type AuthThunk = ThunkAction<Promise<void>, RootState, null, AuthActionTy
 
 export const setPhoto = (photo: string) => {
   return {
-    type: inferLiteralFormString(SET_PHOTO),
+    type: inferLiteralFormString(types.SET_PHOTO),
     payload: {
       photo,
     },
@@ -31,13 +37,13 @@ export const setPhoto = (photo: string) => {
 
 const setProcessing = () => {
   return {
-    type: inferLiteralFormString(SET_IS_PROCESSING),
+    type: inferLiteralFormString(types.SET_IS_PROCESSING),
   }
 }
 
 const setAjaxErrors = (error: string) => {
   return {
-    type: inferLiteralFormString(SET_AJAX_ERROR),
+    type: inferLiteralFormString(types.SET_AJAX_ERROR),
     payload: {
       error,
     },
@@ -46,7 +52,7 @@ const setAjaxErrors = (error: string) => {
 
 export const updateAuthState = <T extends object>(updates: T) => {
   return {
-    type: inferLiteralFormString(UPDATE_AUTH_STATE),
+    type: inferLiteralFormString(types.UPDATE_AUTH_STATE),
     payload: {
       updates,
     },
@@ -55,14 +61,14 @@ export const updateAuthState = <T extends object>(updates: T) => {
 
 const setAuthData = (authData: AuthData) => {
   return {
-    type: inferLiteralFormString(SET_AUTH_DATA),
+    type: inferLiteralFormString(types.SET_AUTH_DATA),
     authData,
   }
 }
 
 const clearAuthState = () => {
   return {
-    type: inferLiteralFormString(CLEAR_AUTH_STATE),
+    type: inferLiteralFormString(types.CLEAR_AUTH_STATE),
   }
 }
 
