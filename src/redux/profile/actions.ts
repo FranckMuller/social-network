@@ -1,53 +1,100 @@
 import * as types from './action-types'
-import { ProfileAction, UserProfile, ProfileThunk, UserProfileUpdates } from './types'
+import { ThunkAction } from 'redux-thunk'
+import { RootState } from '../store'
+import { UserProfileUpdates } from './types'
+import { UserProfile, Post } from '../../types'
 import { setPhoto, updateAuthState } from '../auth/actions'
-import { getUserProfileApi } from '../../api/users'
-import { updateUserProfileApi, updatePhotoProfileApi } from '../../api/profile'
+import { getUserProfileApi, getPostsApi } from '../../api/profile'
+import { updateUserProfileApi, updatePhotoProfileApi, addPostApi } from '../../api/profile'
 import { updateLocalStorageAuthState, getAuthStateUpdates } from '../../utils/auth'
 
-export const addPost = (): ProfileAction => {
+const inferLiteral = <U, T extends U>(arg: T): T => {
+  return arg
+}
+
+const inferLiteralFormString = <T extends string>(arg: T): T => {
+  return inferLiteral<string, T>(arg)
+}
+
+export type ProfileActionTypes =
+  | ReturnType<typeof addPost>
+  | ReturnType<typeof setUserProfile>
+  | ReturnType<typeof updateUserProfile>
+  | ReturnType<typeof setIsFetching>
+  | ReturnType<typeof setPostProcessing>
+  | ReturnType<typeof setPosts>
+
+export type ThunkActionTypes = ThunkAction<Promise<void>, RootState, null, ProfileActionTypes>
+
+const setPostProcessing = (isProcessing: boolean) => {
   return {
-    type: types.ADD_POST,
+    type: inferLiteralFormString(types.SET_POST_PROCESSING),
+    payload: {
+      isProcessing,
+    },
   }
 }
 
-const setUserProfile = (userProfile: UserProfile): ProfileAction => {
+const addPost = (post: Post) => {
   return {
-    type: types.SET_USER_PROFILE,
+    type: inferLiteralFormString(types.ADD_POST),
+    payload: {
+      post,
+    },
+  }
+}
+
+export const fetchAddPost = (textPost: string): ThunkActionTypes => {
+  return async (dispatch) => {
+    dispatch(setPostProcessing(true))
+    try {
+      const post = await addPostApi(textPost)
+      if (post) {
+        dispatch(addPost(post))
+      }
+    } catch (error) {
+      console.log(error)
+      dispatch(setPostProcessing(false))
+    }
+  }
+}
+
+const setUserProfile = (userProfile: UserProfile) => {
+  return {
+    type: inferLiteralFormString(types.SET_USER_PROFILE),
     payload: {
       userProfile,
     },
   }
 }
 
-const updateUserProfile = (userUpdates: {}): ProfileAction => {
+const updateUserProfile = <T extends object>(userUpdates: T) => {
   return {
-    type: types.UPDATE_USER_PROFILE,
+    type: inferLiteralFormString(types.UPDATE_USER_PROFILE),
     payload: {
       userUpdates,
     },
   }
 }
 
-const setIsFetching = (flag: boolean): ProfileAction => {
+const setIsFetching = (flag: boolean) => {
   return {
-    type: types.SET_IS_FETCHING,
+    type: inferLiteralFormString(types.SET_IS_FETCHING),
     payload: {
       flag,
     },
   }
 }
 
-export const fetchUserProfile = (userId: string): ProfileThunk => {
+export const fetchUserProfile = (userId: string): ThunkActionTypes => {
   return async (dispatch) => {
-    dispatch(setIsFetching(true))
     const user = await getUserProfileApi(userId)
     dispatch(setUserProfile(user))
     dispatch(setIsFetching(false))
   }
 }
 
-export const fetchUserProfileUpdate = (userData: UserProfileUpdates): ProfileThunk => {
+export const fetchUserProfileUpdate = (userData: UserProfileUpdates): ThunkActionTypes => {
   return async (dispatch, getState) => {
     const updates = await updateUserProfileApi(userData)
     const authStateUpdates = getAuthStateUpdates(updates, getState().auth)
@@ -64,11 +111,32 @@ type ProfilePhotos = {
   large: string
   small: string
 }
-export const fetchUpdateProfilePhoto = (profilePhotos: ProfilePhotos): ProfileThunk => {
+export const fetchUpdateProfilePhoto = (profilePhotos: ProfilePhotos): ThunkActionTypes => {
   return async (dispatch: any) => {
     const photos = await updatePhotoProfileApi(profilePhotos)
     dispatch(updateUserProfile({ photos: photos }))
     dispatch(setPhoto(photos.small))
     updateLocalStorageAuthState({ photo: photos.small })
+  }
+}
+
+const setPosts = (posts: Array<Post>) => {
+  return {
+    type: inferLiteralFormString(types.SET_POSTS),
+    payload: {
+      posts
+    },
+  }
+}
+
+export const fetchPosts = (userId: string): ThunkActionTypes => {
+  return async (dispatch) => {
+    try {
+      const posts = await getPostsApi(userId)
+      console.log(posts)
+      dispatch(setPosts(posts))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 import UserProfile, { UserProfileProps } from './UserProfile/UserProfile'
-import PostsContainer from './Posts/PostsContainer'
+import Posts from './Posts/Posts'
 
 type profileProps = UserProfileProps
 
@@ -8,9 +8,9 @@ const Profile: React.FC<profileProps> = ({ userProfile, urlParamUserId, authedUs
   return (
     <div className="profile">
       <UserProfile authedUserId={authedUserId} urlParamUserId={urlParamUserId} userProfile={userProfile} />
-      <PostsContainer />
+      <Posts authedUserId={authedUserId} urlParamUserId={urlParamUserId} />
     </div>
   )
 }
 
-export default Profile
+export default memo(Profile)

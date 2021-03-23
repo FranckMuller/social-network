@@ -1,5 +1,9 @@
 import { RootState } from '../store'
 
+export const selectPostProcessing = (state: RootState) => {
+  return state.profile.addPostProcessing
+}
+
 export const selectProfileState = (state: RootState) => {
   return state.profile
 }

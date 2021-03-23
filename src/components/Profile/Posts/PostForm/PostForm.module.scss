@@ -16,6 +16,10 @@
       grid-column: 2 / 3;
       padding: 5px 10px;
       font-size: 12px;
+      display: flex;
+      .preloader {
+        margin-left: 5px;
+      }
     }
 
     .error {

@@ -111,6 +111,14 @@ button:disabled {
 
   &:hover {
     background-color: lighten($color: #0a4981, $amount: 7%);
+    &:disabled {
+      background-color: darken($color: #0a4981, $amount: 5%);
+    }
+  }
+
+  &:disabled {
+    background-color: darken($color: #0a4981, $amount: 5%);
+    cursor: default;
   }
 }
 

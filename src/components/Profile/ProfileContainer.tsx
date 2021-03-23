@@ -24,7 +24,8 @@ const ProfileContainer: React.FC = () => {
     }
   }, [userId, authedUserId, dispatch])
 
-  return <>{profile.isFetching ? <Preloader /> : <Profile authedUserId={authedUserId} urlParamUserId={userId} userProfile={profile.userProfile} />}</>
+
+  return <div>{profile.isFetching ? <Preloader /> : <Profile authedUserId={authedUserId} urlParamUserId={userId} userProfile={profile.userProfile} />}</div>
 }
 
 export default ProfileContainer

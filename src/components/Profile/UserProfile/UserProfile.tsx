@@ -2,14 +2,14 @@ import React from 'react'
 import moment from 'moment'
 import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer'
 import ProfilePhoto from './ProfilePhoto/ProfilePhoto'
-import { UserProfile as userProfileType } from '../../../redux/profile/types'
+import { UserProfile as UserProfileType } from '../../../types'
 
 import styles from './UserProfile.module.scss'
 
 export type UserProfileProps = {
   authedUserId: string | null
   urlParamUserId: string | undefined
-  userProfile: userProfileType
+  userProfile: UserProfileType
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({ userProfile, urlParamUserId, authedUserId }) => {

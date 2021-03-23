@@ -1,24 +1,11 @@
 import * as types from './action-types'
-import { ProfileState } from './types'
+import { ProfileActionTypes } from './actions'
+import { UserProfile, Post } from '../../types'
 
-const initialState: ProfileState = {
-  posts: [
-    {
-      message: 'react - путь самруая',
-      created: '21 янв в 14:51',
-      id: 1,
-    },
-    {
-      message: 'hello world',
-      created: '21 янв в 14:51',
-      id: 2,
-    },
-    {
-      message: 'build awesome application',
-      created: '21 янв в 14:51',
-      id: 3,
-    },
-  ],
+export type ProfileStateType = typeof initialState
+
+const initialState = {
+  posts: [] as Array<Post>,
   userProfile: {
     _id: '',
     name: '',
@@ -38,24 +25,19 @@ const initialState: ProfileState = {
     lastActivity: null,
     created: null,
     birthDate: '',
-  },
+  } as UserProfile,
   newPostMessage: '',
-  isFetching: false,
+  addPostProcessing: false,
+  isFetching: true,
 }
 
-const profileReducer = (state = initialState, action: any): ProfileState => {
+const profileReducer = (state = initialState, action: ProfileActionTypes): ProfileStateType => {
   switch (action.type) {
-
     case types.ADD_POST:
-      const newPost = {
-        message: state.newPostMessage,
-        created: '21 янв в 14:51',
-        id: state.posts[state.posts.length - 1].id + 1,
-      }
       return {
         ...state,
-        newPostMessage: '',
-        posts: [...state.posts, newPost],
+        posts: [...state.posts, action.payload.post],
+        addPostProcessing: false,
       }
 
     case types.SET_USER_PROFILE:
@@ -80,6 +62,20 @@ const profileReducer = (state = initialState, action: any): ProfileState => {
           ...state.userProfile,
           ...action.payload.userUpdates,
         },
+      }
+    }
+
+    case types.SET_POST_PROCESSING: {
+      return {
+        ...state,
+        addPostProcessing: action.payload.isProcessing,
+      }
+    }
+
+    case types.SET_POSTS: {
+      return {
+        ...state,
+        posts: action.payload.posts,
       }
     }
 
