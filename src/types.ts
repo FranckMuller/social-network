@@ -6,7 +6,7 @@ export type ProfilePhotos = {
 export type Post = {
   text: string
   created: string
-  id: number
+  _id: string
 }
 
 export type UserProfile = {

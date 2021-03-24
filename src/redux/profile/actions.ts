@@ -5,7 +5,7 @@ import { UserProfileUpdates } from './types'
 import { UserProfile, Post } from '../../types'
 import { setPhoto, updateAuthState } from '../auth/actions'
 import { getUserProfileApi, getPostsApi } from '../../api/profile'
-import { updateUserProfileApi, updatePhotoProfileApi, addPostApi } from '../../api/profile'
+import { updateUserProfileApi, updatePhotoProfileApi, addPostApi, deletePostApi } from '../../api/profile'
 import { updateLocalStorageAuthState, getAuthStateUpdates } from '../../utils/auth'
 
 const inferLiteral = <U, T extends U>(arg: T): T => {
@@ -23,6 +23,7 @@ export type ProfileActionTypes =
   | ReturnType<typeof setIsFetching>
   | ReturnType<typeof setPostProcessing>
   | ReturnType<typeof setPosts>
+  | ReturnType<typeof deletePost>
 
 export type ThunkActionTypes = ThunkAction<Promise<void>, RootState, null, ProfileActionTypes>
 
@@ -135,6 +136,26 @@ export const fetchPosts = (userId: string): ThunkActionTypes => {
       const posts = await getPostsApi(userId)
       console.log(posts)
       dispatch(setPosts(posts))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+const deletePost = (postId: string) => {
+  return {
+    type: inferLiteralFormString(types.DELETE_POST),
+    payload: {
+      postId
+    }
+  }
+}
+
+export const fetchDeletePost = (postId: string): ThunkActionTypes => {
+  return async (dispatch) => {
+    try {
+      await deletePostApi(postId)
+      dispatch(deletePost(postId))
     } catch (error) {
       console.log(error)
     }

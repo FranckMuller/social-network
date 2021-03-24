@@ -24,6 +24,15 @@ export const getPostsApi = async (userId: string) => {
   return response.data
 }
 
+export const deletePostApi = async (postId: string) => {
+  const res = await axios.delete(`/post/${postId}`, {
+    headers: {
+      Authorization: `Bearer ${getAuthToken()}`,
+    },
+  })
+  return res
+}
+
 export const updateUserProfileApi = async (userData: UserProfileUpdates) => {
   try {
     const response = await axios.put<UserProfileUpdates>(

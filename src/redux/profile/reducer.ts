@@ -79,6 +79,17 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
       }
     }
 
+    case types.DELETE_POST: {
+      const deletedPostIdx = state.posts.findIndex((post) => {
+        return post._id === action.payload.postId
+      })
+
+      return {
+        ...state,
+        posts: [...state.posts.slice(0, deletedPostIdx), ...state.posts.slice(deletedPostIdx + 1)],
+      }
+    }
+
     default:
       return state
   }

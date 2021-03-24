@@ -12,7 +12,7 @@ export type UserProfileProps = {
   urlParamUserId: string | undefined
 }
 
-const Posts: React.FC<UserProfileProps> = ({ authedUserId, urlParamUserId, ...props }) => {
+const Posts: React.FC<UserProfileProps> = ({ authedUserId, urlParamUserId }) => {
   const { fullname, photo } = useSelector(selectUserPostDataInfo)
   const posts = useSelector(selectProfilePosts)
   const dispatch = useDispatch()
@@ -24,11 +24,14 @@ const Posts: React.FC<UserProfileProps> = ({ authedUserId, urlParamUserId, ...pr
     }
   }, [urlParamUserId, authedUserId, dispatch])
 
+  const postsDisplayed = [...posts].reverse()
+  let isPostFormShowed = urlParamUserId === authedUserId || !urlParamUserId;
+  console.log(isPostFormShowed)
   return (
     <div className={styles.posts}>
-      <PostForm />
-      {posts.map((post, idx) => {
-        return <Post key={idx} fullname={fullname} photo={photo} text={post.text} created={post.created} />
+      {isPostFormShowed && <PostForm />}
+      {postsDisplayed.map((post) => {
+        return <Post key={post._id} fullname={fullname} photo={photo} post={post} />
       })}
     </div>
   )
